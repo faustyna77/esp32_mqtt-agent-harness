@@ -55,4 +55,3 @@ The agent verifies the project locally, then guides the student through the foll
 - The filesystem is temporary. Do not store documents or a SQLite database on the service.
 - A Render Web Service has a public URL. Always configure `GRADIO_USERNAME` and `GRADIO_PASSWORD` before connecting it to a real ESP32.
 - For a class, give each student a separate test device or isolated MQTT topic and credentials.
-
