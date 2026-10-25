@@ -14,7 +14,7 @@ Use this only for the Gradio web-chat deployment in this repository. Work one ch
 - Each student deploys their own Render Web Service from their own GitHub fork.
 - Use Render's Free Web Service plan. It has 512 MB RAM, 0.1 CPU, 750 instance-hours per workspace each month, and sleeps after 15 idle minutes.
 - Treat `agent/.env` as secret. Never read, print, commit, or upload it.
-- A free Render Web Service is publicly reachable. Require Gradio basic authentication and isolated MQTT credentials for every student deployment.
+- A free Render Web Service is publicly reachable. Leave Gradio authentication unset for an open class demo; configure it only if the student chooses to restrict access.
 
 ## Local checkpoint
 
@@ -48,14 +48,13 @@ Use this only for the Gradio web-chat deployment in this repository. Work one ch
    - `MQTT_USERNAME`
    - `MQTT_PASSWORD`
    - optional `MQTT_DEVICE_ID`
-   - `GRADIO_USERNAME`
-   - `GRADIO_PASSWORD`
+   - optional `GRADIO_USERNAME` and `GRADIO_PASSWORD` only if the student wants to restrict access
 4. Do not transfer values from any local `.env` file. Trigger a manual deploy or wait for Render's automatic deploy after the environment values are saved.
 
 ## Verification
 
 1. Read the Render deployment status and logs. The service must start without an import or port-binding error.
-2. Fetch the public `onrender.com` URL and confirm HTTP 200 plus the `ESP32 AI Agent` title. Confirm that Gradio login is required when `GRADIO_USERNAME` and `GRADIO_PASSWORD` are configured.
+2. Fetch the public `onrender.com` URL and confirm HTTP 200 plus the `ESP32 AI Agent` title. If `GRADIO_USERNAME` and `GRADIO_PASSWORD` are configured, confirm the login screen is active.
 3. Do not perform a real MQTT command merely as a deployment check. If the student wants to test control, they must explicitly authorize a command against their isolated test device.
 4. Report the live URL, deploy status, free-tier sleep limitation, and any remaining student action in four short bullets.
 
@@ -63,5 +62,5 @@ Use this only for the Gradio web-chat deployment in this repository. Work one ch
 
 - Render Free Web Services sleep after 15 minutes with no inbound traffic. The next visit can take about a minute to wake the app.
 - The free filesystem is ephemeral. Do not store uploaded files or a SQLite database there.
-- Do not expose the chat without `GRADIO_USERNAME` and `GRADIO_PASSWORD`; this app can send MQTT commands to physical hardware.
+- Gradio authentication is optional. Leave `GRADIO_USERNAME` and `GRADIO_PASSWORD` unset when anyone should access the demo; set both only to restrict it.
 - Keep Gradio as the first web UI. Add FastAPI only when another client, such as the Chrome extension, actually needs an API.
