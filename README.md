@@ -46,6 +46,17 @@ python main.py
 
 Examples: `włącz LED`, `wyłącz LED`, `jaki jest stan LED`.
 
+## Web chat and Render
+
+Run the Gradio chat locally from the repository root:
+
+```sh
+pip install -r requirements.txt
+python app.py
+```
+
+For the guided free Render deployment, start Hermes in this repository and run `/esp32-agent-render-deploy`. Student instructions are in `STUDENT_RENDER_DEPLOYMENT.md`.
+
 ## Security
 
 Never commit `include/secrets.h`, `.env` files, certificates, or private keys. They are excluded by `.gitignore`; only the example configuration files belong in the repository.
