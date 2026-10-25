@@ -48,7 +48,6 @@ demo = gr.ChatInterface(
     title="ESP32 AI Agent",
     description="Napisz po polsku, co agent ma zrobić z diodą LED.",
     examples=["włącz LED", "wyłącz LED", "jaki jest stan LED"],
-    save_history=True,
 )
 
 def gradio_auth(username, password):
