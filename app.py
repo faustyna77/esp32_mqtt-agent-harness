@@ -1,5 +1,4 @@
 import os
-import secrets
 import sys
 from pathlib import Path
 
@@ -50,18 +49,8 @@ demo = gr.ChatInterface(
     examples=["włącz LED", "wyłącz LED", "jaki jest stan LED"],
 )
 
-def gradio_auth(username, password):
-    return (
-        secrets.compare_digest(username, os.getenv("GRADIO_USERNAME", ""))
-        and secrets.compare_digest(password, os.getenv("GRADIO_PASSWORD", ""))
-    )
-
-
 if __name__ == "__main__":
-    launch_options = {
-        "server_name": "0.0.0.0",
-        "server_port": int(os.getenv("PORT", "7860")),
-    }
-    if os.getenv("GRADIO_USERNAME") and os.getenv("GRADIO_PASSWORD"):
-        launch_options["auth"] = gradio_auth
-    demo.launch(**launch_options)
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.getenv("PORT", "7860")),
+    )
