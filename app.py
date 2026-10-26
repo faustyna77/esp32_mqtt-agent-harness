@@ -45,8 +45,12 @@ def respond(message, history):
 demo = gr.ChatInterface(
     respond,
     title="ESP32 AI Agent",
-    description="Napisz po polsku, co agent ma zrobić z diodą LED.",
-    examples=["włącz LED", "wyłącz LED", "jaki jest stan LED"],
+    description="Napisz po polsku, co agent ma zrobić z LED lub wybranym GPIO.",
+    examples=[
+        "ustaw GPIO 25 na wysoki przez 10 sekund",
+        "ustaw PWM 128 na GPIO 26 przez 5 sekund",
+        "odczytaj wejście analogowe z GPIO 34",
+    ],
 )
 
 if __name__ == "__main__":
